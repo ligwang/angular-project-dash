@@ -1,11 +1,12 @@
 import {Component, Input, OnInit, Output, EventEmitter, IterableDiffers, IterableDiffer, DoCheck} from '@angular/core';
 import {faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
-
-import {IProject} from '../../../../shared/models/project.interface';
+import _ from 'lodash';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {IAppState} from '../../../../store/state/app.state';
 import {Router} from '@angular/router';
+
+import {IProject} from '../../../../shared/models/project.interface';
+import {IAppState} from '../../../../store/state/app.state';
 import {ClearFilter, FilterProjects} from '../../../../store/actions/project.actions';
 
 @Component({
@@ -34,12 +35,12 @@ export class ProjectsComponent implements OnInit, DoCheck {
     this.iterableDiffer = iterableDiffers.find([]).create(null);
   }
 
-  total = 0;
   newCount = 0;
   workingCount = 0;
   deliveredCount = 0;
   archivedCount = 0;
   totalBudget = 0;
+  totalDivision = 0;
   ngOnInit() {
     this.initForm();
   }
@@ -47,12 +48,12 @@ export class ProjectsComponent implements OnInit, DoCheck {
   ngDoCheck() {
     const changes = this.iterableDiffer.diff(this.projects);
     if (changes) {
-      this.total = this.projects.length;
       this.newCount = this.projects.filter(p => p.status === 'new').length;
       this.workingCount = this.projects.filter(p => p.status === 'working').length;
       this.deliveredCount = this.projects.filter(p => p.status === 'delivered').length;
       this.archivedCount = this.projects.filter(p => p.status === 'archived').length;
       this.totalBudget = this.projects.reduce((a, b) => a + b.budget, 0);
+      this.totalDivision = _.uniqBy(this.projects, 'division').length;
     }
   }
 

@@ -94,7 +94,9 @@ export class ProjectEffects {
       let filteredProjects = projects;
       if (searchKey) {
         filteredProjects = _.filter(filteredProjects, (project) => {
-          return _.includes(project.title.toLowerCase(), searchKey);
+          return _.includes(project.title.toLowerCase(), searchKey)
+            || _.includes(project.division.toLowerCase(), searchKey)
+            || _.includes(project.project_owner.toLowerCase(), searchKey);
         });
       }
       if (status !== 'all' && status) {
