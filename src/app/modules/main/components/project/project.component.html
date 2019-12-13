@@ -1,0 +1,37 @@
+<form [formGroup]="projectForm">
+  <div class="col-12 body-row">
+    <div class="cell cell-title form-group">
+      <input type="text" formControlName="title" class="form-control title-field non-editable" >
+    </div>
+    <div class="cell cell-division form-group">
+      <input type="text" formControlName="division" class="form-control division-field non-editable" >
+    </div>
+    <div class="cell cell-owner form-group">
+      <input type="text" class="form-control owner-field" [ngClass]="{'non-editable':!editable}" formControlName="project_owner">
+    </div>
+    <div class="cell cell-budget form-group">
+      <i>$</i><input type="text" class="form-control budget-field" [ngClass]="{'non-editable':!editable}" formControlName="budget">
+    </div>
+    <div class="cell cell-status form-group">
+      <select class="form-control status-field" [ngClass]="{'non-editable':!editable}" formControlName="status">
+        <option value="new">New</option>
+        <option value="working">Working</option>
+        <option value="archived">Archived</option>
+        <option value="delivered">Delivered</option>
+      </select>
+    </div>
+    <div class="cell cell-datetime form-group">
+      <input type="text" class="form-control created-field non-editable" formControlName="created">
+    </div>
+    <div class="cell cell-datetime form-group">
+      <input type="text" class="form-control modified-field non-editable" formControlName="modified">
+    </div>
+    <div class="cell cell-actions">
+      <button class="btn-sm btn-primary action-btn edit-btn" (click)="onClickModify()">{{editable ? 'Save' : 'Edit'}}</button>
+<!--      <a href="javascript:void(0)" class="btn-sm btn-primary action-btn edit-btn" (click)="clickModify(k, project)">-->
+<!--        {{editable ? 'Save' : 'Edit'}}-->
+<!--      </a>-->
+      <button class="btn btn-sm btn-danger action-btn delete-btn ml-2" (click)="onClickDelete()">Delete</button>
+    </div>
+  </div>
+</form>

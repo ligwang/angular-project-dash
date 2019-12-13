@@ -1,0 +1,77 @@
+.cell {
+  padding: .25rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+
+  input, select {
+    width: 100%;
+    height: 90%;
+  }
+
+  input, select {
+    &:disabled, &:read-only {
+      background: transparent!important;
+    }
+    &.non-editable:focus {
+      outline: none!important;
+      border: none!important;
+      box-shadow: none!important;
+    }
+  }
+  .non-editable {
+    border: none;
+    background: transparent;
+    cursor: default;
+  }
+}
+
+.cell-title {
+  font-size: 16px;
+  flex: 1.5;
+}
+.cell-division {
+  flex: 1.75;
+}
+.cell-owner {
+  flex: 1.75;
+}
+
+.cell-datetime {
+  flex: 1.75;
+}
+.cell-actions {
+  flex: 1.25;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cell-budget {
+  flex: 1.25;
+  position: relative;
+}
+.cell-status {
+  flex: 1.75;
+}
+.header-row {
+  border-bottom: 1px solid #999999;
+  display: flex;
+  flex-direction: row;
+  .cell {
+    padding: .575rem 0 .575rem .85rem;
+  }
+}
+
+.body-row {
+  border-bottom: 1px solid #999999;
+  display: flex;
+  flex-direction: row;
+
+  &:last-child {
+    border: none;
+  }
+}

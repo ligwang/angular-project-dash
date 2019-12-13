@@ -1,0 +1,18 @@
+.budget-field {
+  padding-left: 20px;
+}
+
+.cell i {
+  position: absolute;
+  display: block;
+  transform: translate(0, -50%);
+  top: 50%;
+  pointer-events: none;
+  width: 25px;
+  text-align: center;
+  font-style: normal;
+  margin-right: 15px;;
+}
+.btn-container {
+
+}

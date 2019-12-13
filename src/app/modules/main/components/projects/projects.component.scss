@@ -1,0 +1,52 @@
+.main {
+  padding-top: 30px;
+}
+.search-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-input {
+  flex: 1;
+}
+.search-icon {
+  cursor: pointer;
+}
+
+.filter-collapse {
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.btn-filter {
+  height: 38px;
+}
+
+.filter-part {
+  flex: 1;
+}
+
+.option-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.apply-filter {
+  border-top: 1px solid rgba(0, 0, 0, 0.32);
+  padding-top: 10px;
+}
+
+.summary-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  width: 15%;
+  padding: 10px;
+}
+.summary-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}

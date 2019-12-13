@@ -1,1 +1,6 @@
-<p>Here list of projects!</p>
+<app-projects
+  [projects]="projects | async"
+  (projectSelected)="navigateToProject($event)"
+>
+
+</app-projects>
