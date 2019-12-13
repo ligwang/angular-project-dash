@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter, IterableDiffers, IterableDiffer, DoCheck} from '@angular/core';
-import {faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faFilter, faSearch, faSort} from '@fortawesome/free-solid-svg-icons';
 import _ from 'lodash';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {IProject} from '../../../../shared/models/project.interface';
 import {IAppState} from '../../../../store/state/app.state';
 import {ClearFilter, FilterProjects} from '../../../../store/actions/project.actions';
+import moment from 'moment';
 
 @Component({
   selector: 'app-projects',
@@ -24,6 +25,8 @@ export class ProjectsComponent implements OnInit, DoCheck {
 
   faSearch = faSearch;
   faFilter = faFilter;
+  faSort = faSort;
+
   filterForm: FormGroup;
   constructor(
     private store: Store<IAppState>,
@@ -41,6 +44,25 @@ export class ProjectsComponent implements OnInit, DoCheck {
   archivedCount = 0;
   totalBudget = 0;
   totalDivision = 0;
+
+  sortByTitle;
+  sortByDivision;
+  sortByProjectOwner;
+  sortByBudget;
+  sortByStatus;
+  sortByCreated;
+  sortByModified;
+
+  sortBy = {
+    title: null,
+    division: null,
+    project_owner: null,
+    budget: null,
+    status: null,
+    created: null,
+    modified: null,
+  };
+
   ngOnInit() {
     this.initForm();
   }
@@ -77,6 +99,37 @@ export class ProjectsComponent implements OnInit, DoCheck {
 
   navigateToProject(title: string) {
     this.projectSelected.emit(title);
+  }
+
+  onSortBy(key) {
+    this.sortBy[key] = !this.sortBy[key];
+    switch (key) {
+      case 'title':
+      case 'division':
+      case 'project_owner':
+      case 'status':
+        this.projects.sort( (a, b) => {
+          return this.sortBy[key] ? ('' + a[key]).localeCompare(b[key]) : ('' + b[key]).localeCompare(a[key]);
+        });
+        return this.projects;
+      case 'budget':
+        this.projects.sort( (a, b) => {
+          return this.sortBy.budget ? a.budget - b.budget : b.budget - a.budget;
+        });
+        return this.projects;
+      case 'created':
+      case 'modified':
+        this.projects = _.sortBy(this.projects, (project) => {
+          if (project[key]) {
+            return moment(project[key]);
+          } else {
+            return -1;
+          }
+        });
+        return this.sortBy[key] ? this.projects : this.projects.reverse();
+      default:
+        return this.projects;
+    }
   }
 
   onClickNewProject() { alert('New Project'); }
