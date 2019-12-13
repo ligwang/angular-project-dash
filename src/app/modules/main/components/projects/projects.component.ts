@@ -30,7 +30,6 @@ export class ProjectsComponent implements OnInit, DoCheck {
   filterForm: FormGroup;
   constructor(
     private store: Store<IAppState>,
-    private  router: Router,
     public formBuilder: FormBuilder,
     iterableDiffers: IterableDiffers
   ) {

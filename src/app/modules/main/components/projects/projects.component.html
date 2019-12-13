@@ -110,7 +110,11 @@
             <!--Summary-->
           <div class="d-flex flex-wrap justify-content-between summary-container">
             <div class="card summary-card">
-              <div class="text-center summary-title">Total Division</div>
+               <div class="text-center summary-title">Total Budget</div>
+               <div class="text-center summary-info">${{totalBudget | number:'.2-2'}}</div>
+            </div>
+            <div class="card summary-card">
+              <div class="text-center summary-title">Division Types</div>
               <div class="text-center summary-info">{{totalDivision}}</div>
             </div>
             <div class="card summary-card">
@@ -129,13 +133,6 @@
               <div class="text-center summary-title">Archived</div>
               <div class="text-center summary-info">{{archivedCount}}</div>
             </div>
-          </div>
-          <div class="d-flex flex-wrap justify-content-center summary-container">
-            <div class="card summary-card">
-              <div class="text-center summary-title">Total Budget</div>
-              <div class="text-center summary-info">${{totalBudget | number:'.2-2'}}</div>
-            </div>
-
           </div>
 
           <!--Button part-->
