@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import _ from 'lodash';
 import {Router} from '@angular/router';
@@ -34,7 +34,7 @@ export class ProjectComponent implements OnInit {
       title: new FormControl({value: this.project.title, disabled: true}),
       division: new FormControl({value: this.project.division, disabled: true}),
       project_owner: new FormControl({value: this.project.project_owner, disabled: true}),
-      budget: new FormControl({value: this.project.budget, disabled: true}),
+      budget: new FormControl({value: this.project.budget, disabled: true}, [Validators.min(0)]),
       status: new FormControl({value: this.project.status, disabled: true}),
       created: new FormControl({value: this.project.created, disabled: true}),
       modified: new FormControl({value: this.project.modified, disabled: true})
@@ -45,15 +45,19 @@ export class ProjectComponent implements OnInit {
     const ctrlProjectOwner = this.projectForm.get('project_owner');
     const ctrlBudget = this.projectForm.get('budget');
     const ctrlStatus = this.projectForm.get('status');
-    ctrlProjectOwner.enabled ? ctrlProjectOwner.disable() : ctrlProjectOwner.enable();
-    ctrlBudget.enabled ? ctrlBudget.disable() : ctrlBudget.enable();
-    ctrlStatus.enabled ? ctrlStatus.disable() : ctrlStatus.enable();
     if (this.editable) {
+      if (!this.projectForm.valid) { return; }
+      ctrlProjectOwner.enabled ? ctrlProjectOwner.disable() : ctrlProjectOwner.enable();
+      ctrlBudget.enabled ? ctrlBudget.disable() : ctrlBudget.enable();
+      ctrlStatus.enabled ? ctrlStatus.disable() : ctrlStatus.enable();
       this.editable = false;
       if (!_.isEqual(this.projectForm.value, this.project)) {
         this.store.dispatch(new UpdateProject({...this.projectForm.value, modified: moment().format('MM/DD/YYYY')}));
       }
     } else {
+      ctrlProjectOwner.enabled ? ctrlProjectOwner.disable() : ctrlProjectOwner.enable();
+      ctrlBudget.enabled ? ctrlBudget.disable() : ctrlBudget.enable();
+      ctrlStatus.enabled ? ctrlStatus.disable() : ctrlStatus.enable();
       this.editable = true;
     }
   }
