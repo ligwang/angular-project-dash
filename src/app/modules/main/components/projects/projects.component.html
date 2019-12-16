@@ -21,6 +21,9 @@
                     Filter
                 </button>
               </div>
+              <div>
+                Filter: 
+              </div>
               <div id="filter" class="collapse p-3 filter-collapse">
                 <div class="d-flex flex-row">
 
@@ -144,35 +147,14 @@
           <!--Table Content part-->
           <div class="row">
             <div class="col-12 header-row">
-              <div class="justify-content-between cell cell-title" (click)="onSortBy('title')">
-                <span>Title</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-division" (click)="onSortBy('division')">
-                <span>Division</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-owner" (click)="onSortBy('project_owner')">
-                <span>Project Owner</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-budget" (click)="onSortBy('budget')">
-                <span>Budget</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-status" (click)="onSortBy('status')">
-                <span>Status</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-datetime" (click)="onSortBy('created')">
-                <span>Created</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-datetime" (click)="onSortBy('modified')">
-                <span>Modified</span>
-                <span class=""><fa-icon [icon]="faSort"></fa-icon></span>
-              </div>
-              <div class="justify-content-between cell cell-actions">Action</div>
+              <div class="cell cell-title">Title</div>
+              <div class="cell cell-division">Division</div>
+              <div class="cell cell-owner">Project Owner</div>
+              <div class="cell cell-budget">Budget</div>
+              <div class="cell cell-status">Status</div>
+              <div class="cell cell-datetime">Created</div>
+              <div class="cell cell-datetime">Modified</div>
+              <div class="cell cell-actions">Action</div>
             </div>
 
             <!-- iteration -->
